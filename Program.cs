@@ -20,7 +20,7 @@ public class Program
 	{
 		Console.WriteLine("test");
 
-		for (int i = 100; i <= 10_240_000; i += 500)
+		for (int i = 100; i <= 102_400; i += 100)
 		{
 			await TestFile(i);
 		}
@@ -30,14 +30,17 @@ public class Program
 		Console.ReadLine();
 	}
 
-	public static async Task TestFile(int length)
+	public static async Task TestFile(int baseLength)
 	{
+		Console.WriteLine("[!] testing with len=" + baseLength);
 		var dir = "tests";
 		var fname = RandomString(8) + ".tmp";
 		for (int i = 0; i < 25; ++i)
 		{
+			int length = baseLength + random.Next(-50, 50);
+
 			await GenerateFile(dir, fname, length);
-			await Task.Delay(100);
+			await Task.Delay(25);
 
 			var fn = Resolve(dir, fname);
 			var bytes = await File.ReadAllBytesAsync(fn);
@@ -46,7 +49,7 @@ public class Program
 				Console.WriteLine($"[!] test failed: fn={fn}, expected={length}, got={bytes.Length}");
 				return;
 			}
-			await Task.Delay(100);
+			await Task.Delay(25);
 		}
 	}
 
