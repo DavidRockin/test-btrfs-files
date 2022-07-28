@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-btrfs-files", "test-btrfs-files.csproj", "{1DC4AB0B-CBD1-4D9D-B3B9-6F527FE34765}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DC4AB0B-CBD1-4D9D-B3B9-6F527FE34765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC4AB0B-CBD1-4D9D-B3B9-6F527FE34765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC4AB0B-CBD1-4D9D-B3B9-6F527FE34765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC4AB0B-CBD1-4D9D-B3B9-6F527FE34765}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
