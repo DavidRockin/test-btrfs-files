@@ -46,7 +46,7 @@ public class Program
 			var bytes = await File.ReadAllBytesAsync(fn);
 			if (bytes.Length != length)
 			{
-				Console.WriteLine($"[!] test failed: fn={fn}, expected={length}, got={bytes.Length}");
+				Console.WriteLine($"[!] test failed: fn={fn}, expected={length}, got={bytes.Length} difference={bytes.Length-length}");
 				return;
 			}
 			await Task.Delay(25);
