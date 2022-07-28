@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+#define WRITE_AS_BYTES
+
 using System.Text;
+
 
 public class Program
 {
@@ -49,6 +52,7 @@ public class Program
 				Console.WriteLine($"[!] test failed: fn={fn}, expected={length}, got={bytes.Length} difference={bytes.Length-length}");
 				return;
 			}
+
 			await Task.Delay(25);
 		}
 	}
@@ -61,9 +65,19 @@ public class Program
 
 	public static Task FileWrite(string bucket, string fname, string data)
 	{
+#if WRITE_AS_BYTES
 		var encoder = new UTF8Encoding();
 		byte[] bytes = encoder.GetBytes(data);
 		return FileWrite(bucket, fname, bytes);
+#else
+		return Task.Run(async () =>
+		{
+			await MakeDirectories(bucket, fname, true);
+			string path = Resolve(bucket, fname);
+			// this.Logger.Debug("LocalFS: write file '{path}' with {size} bytes", path, data.Length);
+			return File.WriteAllTextAsync(path, data, Encoding.Default);
+		});
+#endif
 	}
 
 	public static Task FileWrite(string bucket, string fname, byte[] data)
